@@ -179,64 +179,53 @@ function bindQuickAccess() {
 
 /* ==========================================
    3B. QUIZ PAGE ONLY — Copy button
-   Uses a <div> (not <button>) + !important CSS
-   so the site's own stylesheet cannot override it.
+   Single, one-time injection (no repeated
+   DOM-watching) so it never interferes with
+   AIOU's own session/LTI JavaScript.
    ========================================== */
 function openQuizLink(url) {
   if (window.cordova && window.cordova.InAppBrowser) {
     var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes,toolbar=yes,zoom=yes');
-
-    var inject = function () {
-      var injectedJS =
-        "(function(){" +
-        "function makeBtn(){" +
-        "if(document.getElementById('mbrowser-copy-btn'))return;" +
-        "if(!document.getElementById('mbrowser-copy-style')){" +
-        "var st=document.createElement('style');" +
-        "st.id='mbrowser-copy-style';" +
-        "st.innerHTML='#mbrowser-copy-btn{all:initial !important;position:fixed !important;bottom:22px !important;right:20px !important;z-index:2147483647 !important;display:flex !important;align-items:center !important;gap:8px !important;background:linear-gradient(160deg,#2f7bf5,#1257c9) !important;color:#fff !important;border:none !important;border-radius:999px !important;padding:13px 20px !important;font-size:15px !important;font-weight:700 !important;font-family:-apple-system,Roboto,Arial,sans-serif !important;box-shadow:0 8px 20px rgba(11,61,145,0.35) !important;cursor:pointer !important;width:auto !important;height:auto !important;line-height:normal !important;} #mbrowser-copy-btn *{all:unset !important;font-family:inherit !important;font-size:inherit !important;color:inherit !important;font-weight:inherit !important;}';" +
-        "document.head.appendChild(st);" +
-        "}" +
-        "var btn=document.createElement('div');" +
-        "btn.id='mbrowser-copy-btn';" +
-        "var icon=document.createElement('span');" +
-        "icon.textContent='\\uD83D\\uDCCB';" +
-        "icon.style.fontSize='17px';" +
-        "var label=document.createElement('span');" +
-        "label.textContent='Copy Quiz';" +
-        "btn.appendChild(icon);" +
-        "btn.appendChild(label);" +
-        "document.body.appendChild(btn);" +
-        "btn.addEventListener('click',function(e){" +
-        "e.stopPropagation();" +
-        "var text=window.getSelection().toString();" +
-        "if(!text){text=document.body.innerText;}" +
-        "var ta=document.createElement('textarea');" +
-        "ta.value=text;" +
-        "document.body.appendChild(ta);" +
-        "ta.select();" +
-        "try{document.execCommand('copy');}catch(e){}" +
-        "document.body.removeChild(ta);" +
-        "label.textContent='Copied';" +
-        "icon.textContent='\\u2705';" +
-        "setTimeout(function(){label.textContent='Copy Quiz';icon.textContent='\\uD83D\\uDCCB';},1500);" +
-        "});" +
-        "}" +
-        "makeBtn();" +
-        "if(window.__mbrowserCopyObserver){window.__mbrowserCopyObserver.disconnect();}" +
-        "window.__mbrowserCopyObserver=new MutationObserver(function(){makeBtn();});" +
-        "window.__mbrowserCopyObserver.observe(document.body,{childList:true,subtree:false});" +
-        "if(window.__mbrowserCopyInterval){clearInterval(window.__mbrowserCopyInterval);}" +
-        "window.__mbrowserCopyInterval=setInterval(makeBtn,1500);" +
-        "})();";
-      ref.executeScript({ code: injectedJS });
-    };
+    var injected = false;
 
     ref.addEventListener('loadstop', function () {
-      inject();
-      setTimeout(inject, 800);
-      setTimeout(inject, 2000);
-      setTimeout(inject, 4000);
+      if (injected) return; // only inject once, ever, for this window
+      injected = true;
+
+      setTimeout(function () {
+        var injectedJS =
+          "(function(){" +
+          "if(document.getElementById('mbrowser-copy-btn'))return;" +
+          "var st=document.createElement('style');" +
+          "st.innerHTML='#mbrowser-copy-btn{all:initial !important;position:fixed !important;bottom:22px !important;right:20px !important;z-index:2147483647 !important;display:flex !important;align-items:center !important;gap:8px !important;background:linear-gradient(160deg,#2f7bf5,#1257c9) !important;color:#fff !important;border:none !important;border-radius:999px !important;padding:13px 20px !important;font-size:15px !important;font-weight:700 !important;font-family:-apple-system,Roboto,Arial,sans-serif !important;box-shadow:0 8px 20px rgba(11,61,145,0.35) !important;cursor:pointer !important;} #mbrowser-copy-btn *{all:unset !important;font-family:inherit !important;font-size:inherit !important;color:inherit !important;font-weight:inherit !important;}';" +
+          "document.head.appendChild(st);" +
+          "var btn=document.createElement('div');" +
+          "btn.id='mbrowser-copy-btn';" +
+          "var icon=document.createElement('span');" +
+          "icon.textContent='\\uD83D\\uDCCB';" +
+          "icon.style.fontSize='17px';" +
+          "var label=document.createElement('span');" +
+          "label.textContent='Copy Quiz';" +
+          "btn.appendChild(icon);" +
+          "btn.appendChild(label);" +
+          "document.body.appendChild(btn);" +
+          "btn.addEventListener('click',function(e){" +
+          "e.stopPropagation();" +
+          "var text=window.getSelection().toString();" +
+          "if(!text){text=document.body.innerText;}" +
+          "var ta=document.createElement('textarea');" +
+          "ta.value=text;" +
+          "document.body.appendChild(ta);" +
+          "ta.select();" +
+          "try{document.execCommand('copy');}catch(e){}" +
+          "document.body.removeChild(ta);" +
+          "label.textContent='Copied';" +
+          "icon.textContent='\\u2705';" +
+          "setTimeout(function(){label.textContent='Copy Quiz';icon.textContent='\\uD83D\\uDCCB';},1500);" +
+          "});" +
+          "})();";
+        ref.executeScript({ code: injectedJS });
+      }, 1500); // wait 1.5s so the site's own login/session JS finishes first
     });
   } else {
     window.open(url, '_blank');
