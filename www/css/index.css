@@ -1,0 +1,399 @@
+/* ==========================================
+   M-Browser - Home Page Styles
+   ========================================== */
+
+:root {
+  --bg-page: #eaf3fc;
+  --blue-deep: #0b3d91;
+  --blue-mid: #1565d8;
+  --blue-light: #3b8bf0;
+  --card-radius: 22px;
+  --text-dark: #1b2b3a;
+  --text-muted: #5c7089;
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(11, 61, 145, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-dark);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ---------------- TOP BAR ---------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--white);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 18px;
+  color: var(--blue-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:active {
+  background: #eef3fb;
+}
+
+/* ---------------- ADDRESS BAR ---------------- */
+.addressbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 14px;
+  background: var(--white);
+}
+
+.nav-arrow {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: #a9b6c6;
+  flex-shrink: 0;
+}
+
+.url-pill {
+  flex: 1;
+  background: #f1f4f9;
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+
+#url-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  color: var(--text-dark);
+  outline: none;
+}
+
+/* ---------------- CONTENT ---------------- */
+.content {
+  padding: 16px;
+  padding-bottom: 40px;
+}
+
+.card {
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  padding: 22px;
+}
+
+/* Clock card */
+.clock-card {
+  background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-deep) 100%);
+  color: var(--white);
+}
+
+.clock-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.clock-time {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.clock-time #time-sec {
+  font-size: 26px;
+  opacity: 0.65;
+  font-weight: 500;
+}
+
+.ampm {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 6px;
+  opacity: 0.85;
+}
+
+.refresh-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.refresh-circle:active {
+  transform: rotate(90deg);
+  background: rgba(255,255,255,0.28);
+}
+
+.clock-date {
+  margin-top: 6px;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin: 18px 0;
+}
+
+.weather-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weather-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather-icon {
+  font-size: 34px;
+}
+
+.weather-temp {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.weather-desc {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.weather-right {
+  text-align: right;
+}
+
+.weather-city {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.weather-extra {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* Notice card */
+.notice-card {
+  background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-deep) 100%);
+  color: var(--white);
+}
+
+.notice-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.notice-text {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0 0 18px;
+}
+
+.whatsapp-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(40, 170, 130, 0.28);
+  border: 1px solid rgba(80, 220, 170, 0.4);
+  border-radius: 16px;
+  padding: 12px 14px;
+  color: var(--white);
+  text-align: left;
+}
+
+.whatsapp-btn:active {
+  background: rgba(40, 170, 130, 0.45);
+}
+
+.wa-icon {
+  font-size: 22px;
+}
+
+.wa-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wa-text strong {
+  font-size: 14.5px;
+}
+
+.wa-text small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.wa-arrow {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* ---------------- QUICK ACCESS (improved finishing) ---------------- */
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin: 4px 0 12px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.quick-btn {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 16px 6px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  box-shadow: 0 6px 16px rgba(11, 61, 145, 0.10), 0 1px 3px rgba(11, 61, 145, 0.06);
+  border: 1px solid rgba(11, 61, 145, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.quick-btn:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 8px rgba(11, 61, 145, 0.14);
+}
+
+.quick-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+.quick-btn[data-color="blue"] .quick-icon {
+  background: linear-gradient(160deg, #e3edfc, #cfe0fb);
+}
+.quick-btn[data-color="green"] .quick-icon {
+  background: linear-gradient(160deg, #e1f5ea, #c9edd9);
+}
+.quick-btn[data-color="red"] .quick-icon {
+  background: linear-gradient(160deg, #fbe6e6, #f7d2d2);
+}
+
+.quick-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.1px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 10px 16px 26px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.footer p {
+  margin: 2px 0;
+}
+
+.footer-year {
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+/* Injected in-app Copy button (matches Copy Quiz reference style) */
+#mbrowser-copy-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 20px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(160deg, #2f7bf5, #1257c9);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(11, 61, 145, 0.35);
+}
+
+/* Small screens */
+@media (max-width: 340px) {
+  .clock-time { font-size: 36px; }
+  .quick-grid { gap: 6px; }
+}

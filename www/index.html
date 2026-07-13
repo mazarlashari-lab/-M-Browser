@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>M-Browser Home</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- ================= TOP BAR ================= -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo">M</span>
+      <span class="brand-name">M Browser</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="btn-new-tab" aria-label="New tab">+</button>
+      <button class="icon-btn" id="btn-tabs" aria-label="Tabs">▢</button>
+      <button class="icon-btn" id="btn-menu" aria-label="Menu">⋮</button>
+    </div>
+  </header>
+
+  <!-- ================= ADDRESS BAR ================= -->
+  <div class="addressbar">
+    <button class="nav-arrow" id="btn-back" aria-label="Back">‹</button>
+    <button class="nav-arrow" id="btn-forward" aria-label="Forward">›</button>
+    <div class="url-pill">
+      <input type="text" id="url-input" value="https://lms3.aiou.edu.pk/my/courses.php" spellcheck="false">
+    </div>
+    <button class="icon-btn" id="btn-refresh" aria-label="Refresh">⟳</button>
+  </div>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="content">
+
+    <!-- Clock + Weather card -->
+    <section class="card clock-card">
+      <div class="clock-row">
+        <div class="clock-time">
+          <span id="time-main">--:--</span><span id="time-sec">:--</span>
+          <span id="time-ampm" class="ampm">--</span>
+        </div>
+        <button class="refresh-circle" id="btn-clock-refresh" aria-label="Refresh time">⟳</button>
+      </div>
+      <div class="clock-date" id="date-text">Loading date…</div>
+
+      <hr class="divider">
+
+      <div class="weather-row">
+        <div class="weather-left">
+          <span class="weather-icon" id="weather-icon">☀️</span>
+          <div>
+            <div class="weather-temp"><span id="weather-temp">--</span>°C</div>
+            <div class="weather-desc" id="weather-desc">Loading…</div>
+          </div>
+        </div>
+        <div class="weather-right">
+          <div class="weather-city" id="weather-city">--</div>
+          <div class="weather-extra">
+            <span>💧 <span id="weather-humidity">--</span>%</span>
+            <span>💨 <span id="weather-wind">--</span> km/h</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notice card -->
+    <section class="card notice-card">
+      <div class="notice-title">📌 Important Notice</div>
+      <p class="notice-text">
+        Please note that classes and quizzes are regularly scheduled and updated.
+        Kindly ensure you attempt them in a timely manner to stay on track.
+      </p>
+      <button class="whatsapp-btn" id="btn-whatsapp">
+        <span class="wa-icon">💬</span>
+        <span class="wa-text">
+          <strong>Join EduVerse WhatsApp Group</strong>
+          <small>Stay updated · Get support · Community</small>
+        </span>
+        <span class="wa-arrow">›</span>
+      </button>
+    </section>
+
+    <!-- Quick access -->
+    <section class="quick-section">
+      <h2 class="section-title">Quick Access</h2>
+      <div class="quick-grid">
+        <button class="quick-btn" id="btn-quiz" data-color="blue">
+          <span class="quick-icon">❓</span>
+          <span class="quick-label">Quiz</span>
+        </button>
+        <button class="quick-btn" id="btn-aiou" data-color="green">
+          <span class="quick-icon">🎓</span>
+          <span class="quick-label">AIOU</span>
+        </button>
+        <button class="quick-btn" id="btn-gmail" data-color="red">
+          <span class="quick-icon">✉️</span>
+          <span class="quick-label">Gmail</span>
+        </button>
+        <button class="quick-btn" id="btn-google" data-color="blue">
+          <span class="quick-icon">🔍</span>
+          <span class="quick-label">Google</span>
+        </button>
+        <button class="quick-btn" id="btn-youtube" data-color="red">
+          <span class="quick-icon">▶️</span>
+          <span class="quick-label">YouTube</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p>A gift to <strong>EduVerse Members</strong> · crafted by <strong>Mazhar  Lashari</strong></p>
+    <p class="footer-year">© 2026 · All rights reserved</p>
+  </footer>
+
+  <script src="cordova.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
