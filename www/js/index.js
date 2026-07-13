@@ -179,19 +179,19 @@ function bindQuickAccess() {
 
 /* ==========================================
    3B. QUIZ PAGE ONLY — Copy button
-   Single, one-time injection (no repeated
-   DOM-watching) so it never interferes with
-   AIOU's own session/LTI JavaScript.
+   Re-injects on EVERY page load inside the quiz
+   window (so it survives "Re-attempt", navigation,
+   etc.), but each injection is a single one-shot
+   (no MutationObserver/interval loop), so it never
+   interferes with AIOU's own session/LTI JS.
    ========================================== */
 function openQuizLink(url) {
   if (window.cordova && window.cordova.InAppBrowser) {
     var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes,toolbar=yes,zoom=yes');
-    var injected = false;
 
     ref.addEventListener('loadstop', function () {
-      if (injected) return; // only inject once, ever, for this window
-      injected = true;
-
+      // wait so the site's own login/session JS finishes first,
+      // then inject once for THIS page load
       setTimeout(function () {
         var injectedJS =
           "(function(){" +
@@ -225,7 +225,7 @@ function openQuizLink(url) {
           "});" +
           "})();";
         ref.executeScript({ code: injectedJS });
-      }, 1500); // wait 1.5s so the site's own login/session JS finishes first
+      }, 1500);
     });
   } else {
     window.open(url, '_blank');
